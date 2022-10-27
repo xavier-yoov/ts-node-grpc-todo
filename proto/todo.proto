@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+package TodoPackage;
+
+service TodoService {
+  rpc ListTodo(google.protobuf.Empty) returns (Todos) {};
+  rpc CreateTodo(Todo) returns (Todo) {};
+  rpc UpdateTodo(Todo) returns (Todo) {};
+  rpc DeleteTodo(Todo) returns (google.protobuf.Empty) {};
+}
+
+
+enum Status {
+  Pending = 0;
+  Completed = 1;
+}
+
+message Todo {
+  string title = 1;
+  Status status = 2;
+}
+
+message Todos {
+  repeated Todo todos = 1;
+}
